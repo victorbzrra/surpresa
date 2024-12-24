@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surpresa de Natal</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #ff4444, #ffcccc);
+            overflow: hidden;
+            color: #fff;
+            text-align: center;
+            animation: backgroundAnimation 10s infinite;
+            height: 100vh;
+            position: relative;
+        }
+
+        @keyframes backgroundAnimation {
+            0% {
+                background: linear-gradient(to bottom, #ff2a68, #ffb3d9);
+            }
+
+            50% {
+                background: linear-gradient(to bottom, #ff5176, #ff8db2);
+            }
+
+            100% {
+                background: linear-gradient(to bottom, #ff2a68, #ffb3d9);
+            }
+        }
+
+        h1 {
+            margin-top: 20px;
+            font-size: 3rem;
+            text-shadow: 4px 4px 8px #000;
+            animation: bounce 1s ease-in-out infinite, glow 1.5s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes glow {
+            0% {
+                text-shadow: 0 0 20px #ff4444, 0 0 30px #ff4444;
+            }
+
+            50% {
+                text-shadow: 0 0 30px #ff4444, 0 0 40px #ff4444;
+            }
+
+            100% {
+                text-shadow: 0 0 20px #ff4444, 0 0 30px #ff4444;
+            }
+        }
+
+        #gallery-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50vh;
+            animation: zoomIn 3s ease-in-out infinite;
+        }
+
+        @keyframes zoomIn {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .gallery {
+            display: none;
+            text-align: center;
+        }
+
+        .gallery.active {
+            display: block;
+        }
+
+        .photo {
+            width: 100%;
+            max-width: 600px;
+            max-height: 500px;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+            animation: fadeInPhoto 1s ease-in-out;
+        }
+
+        @keyframes fadeInPhoto {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .photo img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        #frases {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 50px;
+            animation: fadeInText 4s infinite;
+            text-shadow: 2px 2px 5px #000;
+        }
+
+        @keyframes fadeInText {
+            0% {
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            pointer-events: none;
+            color: #fff;
+            font-size: 1.5rem;
+            user-select: none;
+            animation: snow 10s linear infinite;
+        }
+
+        @keyframes snow {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+    <h1>Feliz Natal, Meu Amor! 🎄❤️</h1>
+    <div id="frases">Você é o melhor presente que a vida me deu.</div>
+
+    <div id="gallery-container"></div>
+
+    <script>
+        const photos = [];
+        for (let i = 1; i <= 31; i++) {
+            photos.push(`photos/foto (${i}).jpeg`);
+        }
+
+        const frases = [
+            "Você é o melhor presente que a vida me deu. 🎁❤️",
+            "A cada segundo ao seu lado é uma eternidade de felicidade. ⏳😊",
+            "Eu te amo mais do que as palavras podem expressar. 💖🗣️",
+            "Com você, o mundo parece ser um lugar melhor. 🌍✨",
+            "Meu coração bate mais forte quando estou com você. 💓💨",
+            "Você é minha razão, meu tudo, meu amor eterno. ❤️💫",
+            "Cada momento com você é um sonho se tornando realidade. 🌙💭",
+            "Te amo hoje e para sempre, sem medida, sem fim. 💘∞",
+            "Nosso amor é a mais linda história que a vida escreveu para nós. 📖💑",
+            "Eu me encontrei em você, e não quero mais me perder. 🔍❤️",
+            "Sempre pensei que o amor fosse um conto de fadas, até te encontrar. 🏰💫",
+            "Nada se compara ao sorriso que você me dá. 😄💖",
+            "Você é a melhor parte de mim, o que faltava para ser completo. 🧩💘",
+            "Estar com você é como estar no lugar mais seguro do mundo. 🏡💞",
+            "O melhor lugar do mundo é ao seu lado. 🌍💖",
+            "Você ilumina minha vida com seu amor. 💡❤️",
+            "Ao seu lado, até os momentos simples são perfeitos. 🌸💑",
+            "Com você, cada dia é um novo capítulo da nossa história. 📅📖",
+            "Nosso amor é uma viagem sem fim, e eu nunca quero descer. ✈️💘",
+            "Você é a razão do meu sorriso todos os dias. 😁❤️",
+            "Em seus braços, encontro paz e felicidade. 🤗💖",
+            "Você é meu sonho que se tornou realidade. 🌟💫",
+            "Meu amor por você cresce a cada dia. 🌱❤️",
+            "Você é meu sol nos dias nublados. 🌞🌧️",
+            "Sempre que estou contigo, o tempo parece parar. ⏰❤️",
+            "Cada beijo seu é como um conto de fadas. 💋✨",
+            "Em você encontrei a felicidade que sempre procurei. 🏠💘",
+        ];
+
+        function createGalleries() {
+            const galleryContainer = document.getElementById('gallery-container');
+            const galleries = [];
+
+            // Criar galerias de uma foto por vez
+            photos.forEach((photo, index) => {
+                const gallery = document.createElement('div');
+                gallery.classList.add('gallery');
+                const photoDiv = document.createElement('div');
+                photoDiv.classList.add('photo');
+                const img = document.createElement('img');
+                img.src = photo;
+                img.alt = `Foto ${index + 1}`;
+                photoDiv.appendChild(img);
+                gallery.appendChild(photoDiv);
+                galleries.push(gallery);
+                galleryContainer.appendChild(gallery);
+            });
+
+            // Alternar entre as galerias
+            let currentIndex = 0;
+            setInterval(() => {
+                galleries.forEach((gallery, index) => {
+                    gallery.classList.remove('active');
+                });
+                galleries[currentIndex].classList.add('active');
+                currentIndex = (currentIndex + 1) % galleries.length;
+            }, 3000); // Alternar a cada 3 segundos
+        }
+
+        function displayFrases() {
+            const frasesContainer = document.getElementById('frases');
+            let currentFraseIndex = 0;
+
+            setInterval(() => {
+                frasesContainer.textContent = frases[currentFraseIndex];
+                currentFraseIndex = (currentFraseIndex + 1) % frases.length;
+            }, 4000); // Alternar a cada 3 segundos
+        }
+
+        function createSnow() {
+            const snowContainer = document.getElementById('snow');
+            for (let i = 0; i < 50; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.classList.add('snowflake');
+                snowflake.textContent = '❄';
+                snowflake.style.left = `${Math.random() * 100}%`;
+                snowflake.style.animationDuration = `${Math.random() * 5 + 5}s`; // duração entre 5s e 10s
+                snowContainer.appendChild(snowflake);
+            }
+        }
+
+        createGalleries();
+        displayFrases();
+        createSnow();
+    </script>
+</body>
+
+</html>
